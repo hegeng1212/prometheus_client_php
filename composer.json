@@ -1,12 +1,12 @@
 {
-    "name": "promphp/prometheus_client_php",
-    "description": "Prometheus instrumentation library for PHP applications.",
+    "name": "hegeng1212/prometheus_client_php",
+    "description": "Prometheus instrumentation library for PHP applications. fork from PromPHP/prometheus_client_php",
     "type": "library",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "Lukas Kämmerling",
-            "email": "kontakt@lukas-kaemmerling.de"
+            "name": "hegeng",
+            "email": "hegeng@babytree-inc.com"
         }
     ],
     "replace": {
