@@ -15,7 +15,7 @@ class MathTest extends TestCase
      *
      * @param float[] $samples
      */
-    public function testQuantileSuccess(array $samples, float $q, float $expected): void
+    public function testQuantileSuccess(array $samples, float $q, float $expected)
     {
         $math = new Math();
         $result = $math->quantile($samples, $q);

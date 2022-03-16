@@ -17,7 +17,7 @@ class APCngTest extends TestCase
     /**
      * @test
      */
-    public function itShouldNotClearWholeAPCacheOnFlush(): void
+    public function itShouldNotClearWholeAPCacheOnFlush()
     {
         apcu_clear_cache();
         apcu_add("not a prometheus metric key", "data");
@@ -46,7 +46,7 @@ class APCngTest extends TestCase
     /**
      * @test
      */
-    public function itShouldUseConfiguredPrefix(): void
+    public function itShouldUseConfiguredPrefix()
     {
         $apc = new APCng('custom_prefix');
         $apc->wipeStorage();
@@ -75,7 +75,7 @@ class APCngTest extends TestCase
      * Ensure orphaned items added after the metainfo cache has been created get "picked up" and stored
      * in the metainfo cache. Ensure the TTL is honored (off-by-one errors in APCu TTL handling notwithstanding).
      */
-    public function itShouldHonorMetainfoCacheTTL(): void
+    public function itShouldHonorMetainfoCacheTTL()
     {
         $ttl = 1; // 1-second TTL
 
@@ -114,7 +114,7 @@ class APCngTest extends TestCase
     /**
      * @test
      */
-    public function itShouldHonorZeroMetainfoCacheTTL(): void
+    public function itShouldHonorZeroMetainfoCacheTTL()
     {
         $this->metainfoCacheDisabledTest(0); // cache disabled
     }
@@ -122,7 +122,7 @@ class APCngTest extends TestCase
     /**
      * @test
      */
-    public function itShouldHandleNegativeMetainfoCacheTTLAsZero(): void
+    public function itShouldHandleNegativeMetainfoCacheTTLAsZero()
     {
         $this->metainfoCacheDisabledTest(-1);
     }
@@ -151,7 +151,7 @@ class APCngTest extends TestCase
     }
 
     /* Helper function for metainfo cache-disabled results testing, reduces more copypaste when only $ttl is changing */
-    private function metainfoCacheDisabledTest(int $ttl): void
+    private function metainfoCacheDisabledTest(int $ttl)
     {
         $apc = new APCng();
         $apc->setMetainfoTTL($ttl);

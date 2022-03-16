@@ -52,7 +52,7 @@ class APC implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateHistogram(array $data): void
+    public function updateHistogram(array $data)
     {
         // Initialize the sum
         $sumKey = $this->histogramBucketValueKey($data, 'sum');
@@ -90,7 +90,7 @@ class APC implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateSummary(array $data): void
+    public function updateSummary(array $data)
     {
         // store meta
         $metaKey = $this->metaKey($data);
@@ -111,7 +111,7 @@ class APC implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateGauge(array $data): void
+    public function updateGauge(array $data)
     {
         $valueKey = $this->valueKey($data);
         if ($data['command'] === Adapter::COMMAND_SET) {
@@ -136,7 +136,7 @@ class APC implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateCounter(array $data): void
+    public function updateCounter(array $data)
     {
         $valueKey = $this->valueKey($data);
         // Check if value key already exists
@@ -160,7 +160,7 @@ class APC implements Adapter
      *
      * @return void
      */
-    public function flushAPC(): void
+    public function flushAPC()
     {
         $this->wipeStorage();
     }
@@ -170,7 +170,7 @@ class APC implements Adapter
      *
      * @return void
      */
-    public function wipeStorage(): void
+    public function wipeStorage()
     {
         //                   /      / | PCRE expresion boundary
         //                    ^       | match from first character only
@@ -479,7 +479,7 @@ class APC implements Adapter
     /**
      * @param mixed[] $samples
      */
-    private function sortSamples(array &$samples): void
+    private function sortSamples(array &$samples)
     {
         usort($samples, function ($a, $b): int {
             return strcmp(implode("", $a['labelValues']), implode("", $b['labelValues']));

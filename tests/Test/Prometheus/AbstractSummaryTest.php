@@ -29,7 +29,7 @@ abstract class AbstractSummaryTest extends TestCase
 
     private const HIGH_PRECISION = "17";
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->configureAdapter();
         $savedPrecision = ini_get('serialize_precision');
@@ -40,17 +40,17 @@ abstract class AbstractSummaryTest extends TestCase
         ini_set('serialize_precision', self::HIGH_PRECISION);
     }
 
-    public function tearDown(): void
+    public function tearDown()
     {
         ini_set('serialize_precision', $this->savedPrecision);
     }
 
-    abstract public function configureAdapter(): void;
+    abstract public function configureAdapter();
 
     /**
      * @test
      */
-    public function itShouldObserveWithLabels(): void
+    public function itShouldObserveWithLabels()
     {
         $summary = new Summary(
             $this->adapter,
@@ -116,7 +116,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveWithoutLabelWhenNoLabelsAreDefined(): void
+    public function itShouldObserveWithoutLabelWhenNoLabelsAreDefined()
     {
         $summary = new Summary(
             $this->adapter,
@@ -182,7 +182,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveValuesOfTypeDouble(): void
+    public function itShouldObserveValuesOfTypeDouble()
     {
         $summary = new Summary(
             $this->adapter,
@@ -248,7 +248,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveComputeMedianCorrectlyWithEvenSerieLength(): void
+    public function itShouldObserveComputeMedianCorrectlyWithEvenSerieLength()
     {
         $summary = new Summary(
             $this->adapter,
@@ -314,7 +314,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveValuesOfTypeDoubleWithUnusualPrecision(): void
+    public function itShouldObserveValuesOfTypeDoubleWithUnusualPrecision()
     {
         $summary = new Summary(
             $this->adapter,
@@ -336,7 +336,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldProvideDefaultBuckets(): void
+    public function itShouldProvideDefaultBuckets()
     {
         // .01, 05, .5, .95, .99
 
@@ -415,7 +415,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIgnoreSerieItemsOlderThanMaxAgeSeconds(): void
+    public function itShouldIgnoreSerieItemsOlderThanMaxAgeSeconds()
     {
         $summary = new Summary(
             $this->adapter,
@@ -483,7 +483,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenTheQuantilesAreNotIncreasing(): void
+    public function itShouldThrowAnExceptionWhenTheQuantilesAreNotIncreasing()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Summary quantiles must be in increasing order');
@@ -493,7 +493,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenTheQuantileIsLowerThanZero(): void
+    public function itShouldThrowAnExceptionWhenTheQuantileIsLowerThanZero()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected number between 0 and 1.');
@@ -503,7 +503,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenTheQuantileIsGreaterThanOne(): void
+    public function itShouldThrowAnExceptionWhenTheQuantileIsGreaterThanOne()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected number between 0 and 1.');
@@ -513,7 +513,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenThereIsLessThanOneQuantile(): void
+    public function itShouldThrowAnExceptionWhenThereIsLessThanOneQuantile()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Summary must have at least one quantile');
@@ -523,7 +523,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenMaxAgeSecondsLowerThanZero(): void
+    public function itShouldThrowAnExceptionWhenMaxAgeSecondsLowerThanZero()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected number greater than 0.');
@@ -533,7 +533,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenThereIsALabelNamedQuantile(): void
+    public function itShouldThrowAnExceptionWhenThereIsALabelNamedQuantile()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Summary cannot have a label named');
@@ -543,7 +543,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidMetricsNames(): void
+    public function itShouldRejectInvalidMetricsNames()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid metric name');
@@ -553,7 +553,7 @@ abstract class AbstractSummaryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidLabelNames(): void
+    public function itShouldRejectInvalidLabelNames()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid label name');
@@ -566,7 +566,7 @@ abstract class AbstractSummaryTest extends TestCase
      *
      * @param mixed $value The label value
      */
-    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value): void
+    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value)
     {
         $label = 'foo';
         $summary = new Summary($this->adapter, 'test', 'some_metric', 'help', [$label], 60, [0.5]);

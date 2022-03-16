@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractHistogramTest;
  */
 class HistogramTest extends AbstractHistogramTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $this->adapter = new Redis(['host' => REDIS_HOST]);
         $this->adapter->wipeStorage();

@@ -29,7 +29,7 @@ abstract class AbstractHistogramTest extends TestCase
 
     private const HIGH_PRECISION = "17";
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->configureAdapter();
         $savedPrecision = ini_get('serialize_precision');
@@ -40,17 +40,17 @@ abstract class AbstractHistogramTest extends TestCase
         ini_set('serialize_precision', self::HIGH_PRECISION);
     }
 
-    public function tearDown(): void
+    public function tearDown()
     {
         ini_set('serialize_precision', $this->savedPrecision);
     }
 
-    abstract public function configureAdapter(): void;
+    abstract public function configureAdapter();
 
     /**
      * @test
      */
-    public function itShouldObserveWithLabels(): void
+    public function itShouldObserveWithLabels()
     {
         $histogram = new Histogram(
             $this->adapter,
@@ -120,7 +120,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveWithoutLabelWhenNoLabelsAreDefined(): void
+    public function itShouldObserveWithoutLabelWhenNoLabelsAreDefined()
     {
         $histogram = new Histogram(
             $this->adapter,
@@ -189,7 +189,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveValuesOfTypeDouble(): void
+    public function itShouldObserveValuesOfTypeDouble()
     {
         $histogram = new Histogram(
             $this->adapter,
@@ -259,7 +259,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldObserveValuesOfTypeDoubleWithUnusualPrecision(): void
+    public function itShouldObserveValuesOfTypeDoubleWithUnusualPrecision()
     {
         $histogram = new Histogram(
             $this->adapter,
@@ -280,7 +280,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldProvideDefaultBuckets(): void
+    public function itShouldProvideDefaultBuckets()
     {
         // .005, .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 2.5, 5.0, 7.5, 10.0
 
@@ -417,7 +417,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenTheBucketSizesAreNotIncreasing(): void
+    public function itShouldThrowAnExceptionWhenTheBucketSizesAreNotIncreasing()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Histogram buckets must be in increasing order');
@@ -427,7 +427,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenThereIsLessThanOneBucket(): void
+    public function itShouldThrowAnExceptionWhenThereIsLessThanOneBucket()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Histogram must have at least one bucket');
@@ -437,7 +437,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenThereIsALabelNamedLe(): void
+    public function itShouldThrowAnExceptionWhenThereIsALabelNamedLe()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Histogram cannot have a label named');
@@ -447,7 +447,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidMetricsNames(): void
+    public function itShouldRejectInvalidMetricsNames()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid metric name');
@@ -457,7 +457,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidLabelNames(): void
+    public function itShouldRejectInvalidLabelNames()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid label name');
@@ -470,7 +470,7 @@ abstract class AbstractHistogramTest extends TestCase
      *
      * @param mixed $value The label value
      */
-    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value): void
+    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value)
     {
         $label = 'foo';
         $histogram = new Histogram($this->adapter, 'test', 'some_metric', 'help', [$label], [1]);
@@ -498,7 +498,7 @@ abstract class AbstractHistogramTest extends TestCase
     /**
      * @test
      */
-    public function itShouldBeAbleToGenerateExponentialBucketsGivenSpecificBounds(): void
+    public function itShouldBeAbleToGenerateExponentialBucketsGivenSpecificBounds()
     {
         $start = 0.05;
         $growthFactor = 1.5;

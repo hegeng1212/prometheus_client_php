@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractHistogramTest;
  */
 class HistogramWithPrefixTest extends AbstractHistogramTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $connection = new \Redis();
         $connection->connect(REDIS_HOST);

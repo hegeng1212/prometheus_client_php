@@ -14,7 +14,7 @@ use Prometheus\Storage\InMemory;
 class RenderTextFormatTest extends TestCase
 {
 
-    public function testOutputMatchesExpectations(): void
+    public function testOutputMatchesExpectations()
     {
         $metrics = $this->buildSamples();
 

@@ -19,7 +19,7 @@ class RedisTest extends TestCase
      */
     private $redisConnection;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->redisConnection = new \Redis();
         $this->redisConnection->connect(REDIS_HOST);
@@ -29,7 +29,7 @@ class RedisTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionOnConnectionFailure(): void
+    public function itShouldThrowAnExceptionOnConnectionFailure()
     {
         $redis = new Redis(['host' => '/dev/null']);
 
@@ -43,7 +43,7 @@ class RedisTest extends TestCase
     /**
      * @test
      */
-    public function itShouldThrowExceptionWhenInjectedRedisIsNotConnected(): void
+    public function itShouldThrowExceptionWhenInjectedRedisIsNotConnected()
     {
         $connection = new \Redis();
 
@@ -56,7 +56,7 @@ class RedisTest extends TestCase
     /**
      * @test
      */
-    public function itShouldNotClearWholeRedisOnFlush(): void
+    public function itShouldNotClearWholeRedisOnFlush()
     {
         $this->redisConnection->set('not a prometheus metric key', 'data');
 

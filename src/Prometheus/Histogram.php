@@ -116,7 +116,7 @@ class Histogram extends Collector
      * @param double $value e.g. 123
      * @param string[]  $labels e.g. ['status', 'opcode']
      */
-    public function observe(float $value, array $labels = []): void
+    public function observe(float $value, array $labels = [])
     {
         $this->assertLabelsAreDefinedCorrectly($labels);
 

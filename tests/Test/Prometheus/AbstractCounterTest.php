@@ -21,17 +21,17 @@ abstract class AbstractCounterTest extends TestCase
      */
     public $adapter;
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->configureAdapter();
     }
 
-    abstract public function configureAdapter(): void;
+    abstract public function configureAdapter();
 
     /**
      * @test
      */
-    public function itShouldIncreaseWithLabels(): void
+    public function itShouldIncreaseWithLabels()
     {
         $counter = new Counter($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $counter->inc(['lalal', 'lululu']);
@@ -65,7 +65,7 @@ abstract class AbstractCounterTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIncreaseWithoutLabelWhenNoLabelsAreDefined(): void
+    public function itShouldIncreaseWithoutLabelWhenNoLabelsAreDefined()
     {
         $counter = new Counter($this->adapter, 'test', 'some_metric', 'this is for testing');
         $counter->inc();
@@ -97,7 +97,7 @@ abstract class AbstractCounterTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIncreaseTheCounterByAnArbitraryInteger(): void
+    public function itShouldIncreaseTheCounterByAnArbitraryInteger()
     {
         $counter = new Counter($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $counter->inc(['lalal', 'lululu']);
@@ -130,7 +130,7 @@ abstract class AbstractCounterTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIncreaseTheCounterWithAFloat(): void
+    public function itShouldIncreaseTheCounterWithAFloat()
     {
         $counter = new Counter($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $counter->inc(['lalal', 'lululu']);
@@ -164,7 +164,7 @@ abstract class AbstractCounterTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidMetricsNames(): void
+    public function itShouldRejectInvalidMetricsNames()
     {
         $this->expectException(InvalidArgumentException::class);
         new Counter($this->adapter, 'test', 'some metric invalid metric', 'help');
@@ -173,7 +173,7 @@ abstract class AbstractCounterTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidLabelNames(): void
+    public function itShouldRejectInvalidLabelNames()
     {
         $this->expectException(InvalidArgumentException::class);
         new Counter($this->adapter, 'test', 'some_metric', 'help', ['invalid label']);
@@ -185,7 +185,7 @@ abstract class AbstractCounterTest extends TestCase
      *
      * @param mixed $value The label value
      */
-    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value): void
+    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value)
     {
         $label = 'foo';
         $histogram = new Counter($this->adapter, 'test', 'some_metric', 'help', [$label]);

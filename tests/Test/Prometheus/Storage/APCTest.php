@@ -17,7 +17,7 @@ class APCTest extends TestCase
     /**
      * @test
      */
-    public function itShouldNotClearWholeAPCacheOnFlush(): void
+    public function itShouldNotClearWholeAPCacheOnFlush()
     {
         apcu_clear_cache();
         apcu_add("not a prometheus metric key", "data");
@@ -45,7 +45,7 @@ class APCTest extends TestCase
     /**
      * @test
      */
-    public function itShouldUseConfiguredPrefix(): void
+    public function itShouldUseConfiguredPrefix()
     {
         $apc = new APC('custom_prefix');
         $apc->wipeStorage();

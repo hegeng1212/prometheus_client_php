@@ -23,7 +23,7 @@ abstract class AbstractCollectorRegistryTest extends TestCase
      */
     private $renderer;
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->configureAdapter();
         $this->renderer = new RenderTextFormat();
@@ -32,7 +32,7 @@ abstract class AbstractCollectorRegistryTest extends TestCase
     /**
      * @test
      */
-    public function itShouldHaveDefaultMetrics(): void
+    public function itShouldHaveDefaultMetrics()
     {
         $registry = new CollectorRegistry($this->adapter);
         $expected = <<<EOF
@@ -52,7 +52,7 @@ EOF;
     /**
      * @test
      */
-    public function itShouldNotHaveDefaultMetricsWhenTheyAreDisabled(): void
+    public function itShouldNotHaveDefaultMetricsWhenTheyAreDisabled()
     {
         $registry = new CollectorRegistry($this->adapter, false);
         $expected = <<<EOF
@@ -71,7 +71,7 @@ EOF;
     /**
      * @test
      */
-    public function itShouldSaveGauges(): void
+    public function itShouldSaveGauges()
     {
         $registry = new CollectorRegistry($this->adapter);
 
@@ -102,7 +102,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldSaveCounters(): void
+    public function itShouldSaveCounters()
     {
         $registry = new CollectorRegistry($this->adapter);
         $metric = $registry->registerCounter('test', 'some_metric', 'this is for testing', ['foo', 'bar']);
@@ -128,7 +128,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldSaveHistograms(): void
+    public function itShouldSaveHistograms()
     {
         $registry = new CollectorRegistry($this->adapter);
         $metric = $registry->registerHistogram(
@@ -181,7 +181,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldSaveHistogramsWithoutLabels(): void
+    public function itShouldSaveHistogramsWithoutLabels()
     {
         $registry = new CollectorRegistry($this->adapter);
         $metric = $registry->registerHistogram('test', 'some_metric', 'this is for testing');
@@ -222,7 +222,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldIncreaseACounterWithoutNamespace(): void
+    public function itShouldIncreaseACounterWithoutNamespace()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry
@@ -245,7 +245,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameCounterTwice(): void
+    public function itShouldForbidRegisteringTheSameCounterTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerCounter('foo', 'metric', 'help');
@@ -257,7 +257,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameCounterWithDifferentLabels(): void
+    public function itShouldForbidRegisteringTheSameCounterWithDifferentLabels()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerCounter('foo', 'metric', 'help', ["foo", "bar"]);
@@ -269,7 +269,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameHistogramTwice(): void
+    public function itShouldForbidRegisteringTheSameHistogramTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerHistogram('foo', 'metric', 'help');
@@ -281,7 +281,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameHistogramWithDifferentLabels(): void
+    public function itShouldForbidRegisteringTheSameHistogramWithDifferentLabels()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerCounter('foo', 'metric', 'help', ["foo", "bar"]);
@@ -293,7 +293,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameGaugeTwice(): void
+    public function itShouldForbidRegisteringTheSameGaugeTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerGauge('foo', 'metric', 'help');
@@ -305,7 +305,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldForbidRegisteringTheSameGaugeWithDifferentLabels(): void
+    public function itShouldForbidRegisteringTheSameGaugeWithDifferentLabels()
     {
         $registry = new CollectorRegistry($this->adapter);
         $registry->registerGauge('foo', 'metric', 'help', ["foo", "bar"]);
@@ -317,7 +317,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldThrowAnExceptionWhenGettingANonExistentMetric(): void
+    public function itShouldThrowAnExceptionWhenGettingANonExistentMetric()
     {
         $registry = new CollectorRegistry($this->adapter);
 
@@ -328,7 +328,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldNotRegisterACounterTwice(): void
+    public function itShouldNotRegisterACounterTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $counterA = $registry->getOrRegisterCounter("foo", "bar", "Help text");
@@ -340,7 +340,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldNotRegisterAGaugeTwice(): void
+    public function itShouldNotRegisterAGaugeTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $gaugeA = $registry->getOrRegisterGauge("foo", "bar", "Help text");
@@ -352,7 +352,7 @@ EOF
     /**
      * @test
      */
-    public function itShouldNotRegisterAHistogramTwice(): void
+    public function itShouldNotRegisterAHistogramTwice()
     {
         $registry = new CollectorRegistry($this->adapter);
         $histogramA = $registry->getOrRegisterHistogram("foo", "bar", "Help text");
@@ -365,7 +365,7 @@ EOF
      * @test
      * @dataProvider itShouldThrowAnExceptionOnInvalidMetricNamesDataProvider
      */
-    public function itShouldThrowAnExceptionOnInvalidMetricNames(string $namespace, string $metricName): void
+    public function itShouldThrowAnExceptionOnInvalidMetricNames(string $namespace, string $metricName)
     {
         $registry = new CollectorRegistry($this->adapter);
 
@@ -398,7 +398,7 @@ EOF
      * @test
      * @dataProvider itShouldThrowAnExceptionOnInvalidMetricLabelDataProvider
      */
-    public function itShouldThrowAnExceptionOnInvalidMetricLabel(string $invalidLabel): void
+    public function itShouldThrowAnExceptionOnInvalidMetricLabel(string $invalidLabel)
     {
         $registry = new CollectorRegistry($this->adapter);
 
@@ -419,5 +419,5 @@ EOF
     }
 
 
-    abstract public function configureAdapter(): void;
+    abstract public function configureAdapter();
 }

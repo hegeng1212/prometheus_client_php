@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractSummaryTest;
  */
 class SummaryWithPrefixTest extends AbstractSummaryTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $connection = new \Redis();
         $connection->connect(REDIS_HOST);

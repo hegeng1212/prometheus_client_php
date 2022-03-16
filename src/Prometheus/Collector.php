@@ -91,7 +91,7 @@ abstract class Collector
     /**
      * @param string[] $labels
      */
-    protected function assertLabelsAreDefinedCorrectly(array $labels): void
+    protected function assertLabelsAreDefinedCorrectly(array $labels)
     {
         if (count($labels) !== count($this->labels)) {
             throw new InvalidArgumentException(sprintf('Labels are not defined correctly: %s', print_r($labels, true)));
@@ -101,7 +101,7 @@ abstract class Collector
     /**
      * @param string $metricName
      */
-    public static function assertValidMetricName(string $metricName): void
+    public static function assertValidMetricName(string $metricName)
     {
         if (preg_match(self::RE_METRIC_LABEL_NAME, $metricName) !== 1) {
             throw new InvalidArgumentException("Invalid metric name: '" . $metricName . "'");
@@ -111,7 +111,7 @@ abstract class Collector
     /**
      * @param string $label
      */
-    public static function assertValidLabel(string $label): void
+    public static function assertValidLabel(string $label)
     {
         if (preg_match(self::RE_METRIC_LABEL_NAME, $label) !== 1) {
             throw new InvalidArgumentException("Invalid label name: '" . $label . "'");

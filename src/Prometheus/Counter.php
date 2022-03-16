@@ -21,7 +21,7 @@ class Counter extends Collector
     /**
      * @param string[] $labels e.g. ['status', 'opcode']
      */
-    public function inc(array $labels = []): void
+    public function inc(array $labels = [])
     {
         $this->incBy(1, $labels);
     }
@@ -30,7 +30,7 @@ class Counter extends Collector
      * @param int|float $count e.g. 2
      * @param mixed[] $labels e.g. ['status', 'opcode']
      */
-    public function incBy($count, array $labels = []): void
+    public function incBy($count, array $labels = [])
     {
         $this->assertLabelsAreDefinedCorrectly($labels);
 

@@ -12,7 +12,7 @@ use Test\Prometheus\AbstractCollectorRegistryTest;
  */
 class CollectorRegistryTest extends AbstractCollectorRegistryTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $this->adapter = new Redis(['host' => REDIS_HOST]);
         $this->adapter->wipeStorage();

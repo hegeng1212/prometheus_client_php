@@ -81,7 +81,7 @@ class Redis implements Adapter
     /**
      * @param mixed[] $options
      */
-    public static function setDefaultOptions(array $options): void
+    public static function setDefaultOptions(array $options)
     {
         self::$defaultOptions = array_merge(self::$defaultOptions, $options);
     }
@@ -89,7 +89,7 @@ class Redis implements Adapter
     /**
      * @param string $prefix
      */
-    public static function setPrefix(string $prefix): void
+    public static function setPrefix(string $prefix)
     {
         self::$prefix = $prefix;
     }
@@ -98,7 +98,7 @@ class Redis implements Adapter
      * @deprecated use replacement method wipeStorage from Adapter interface
      * @throws StorageException
      */
-    public function flushRedis(): void
+    public function flushRedis()
     {
         $this->wipeStorage();
     }
@@ -106,7 +106,7 @@ class Redis implements Adapter
     /**
      * @inheritDoc
      */
-    public function wipeStorage(): void
+    public function wipeStorage()
     {
         $this->ensureOpenConnection();
 
@@ -187,7 +187,7 @@ LUA
     /**
      * @throws StorageException
      */
-    private function ensureOpenConnection(): void
+    private function ensureOpenConnection()
     {
         if ($this->connectionInitialized === true) {
             return;
@@ -209,7 +209,7 @@ LUA
     /**
      * @throws StorageException
      */
-    private function connectToServer(): void
+    private function connectToServer()
     {
         try {
             $connection_successful = false;
@@ -234,7 +234,7 @@ LUA
      * @param mixed[] $data
      * @throws StorageException
      */
-    public function updateHistogram(array $data): void
+    public function updateHistogram(array $data)
     {
         $this->ensureOpenConnection();
         $bucketToIncrease = '+Inf';
@@ -274,7 +274,7 @@ LUA
      * @param mixed[] $data
      * @throws StorageException
      */
-    public function updateSummary(array $data): void
+    public function updateSummary(array $data)
     {
         $this->ensureOpenConnection();
 
@@ -307,7 +307,7 @@ LUA
      * @param mixed[] $data
      * @throws StorageException
      */
-    public function updateGauge(array $data): void
+    public function updateGauge(array $data)
     {
         $this->ensureOpenConnection();
         $metaData = $data;
@@ -345,7 +345,7 @@ LUA
      * @param mixed[] $data
      * @throws StorageException
      */
-    public function updateCounter(array $data): void
+    public function updateCounter(array $data)
     {
         $this->ensureOpenConnection();
         $metaData = $data;

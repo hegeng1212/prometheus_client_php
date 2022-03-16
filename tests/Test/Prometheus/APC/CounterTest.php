@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractCounterTest;
  */
 class CounterTest extends AbstractCounterTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $this->adapter = new APC();
         $this->adapter->wipeStorage();

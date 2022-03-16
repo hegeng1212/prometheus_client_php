@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractGaugeTest;
 class GaugeTest extends AbstractGaugeTest
 {
 
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $this->adapter = new InMemory();
         $this->adapter->wipeStorage();

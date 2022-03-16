@@ -18,7 +18,7 @@ class PerformanceTest extends TestCase
     /**
      * @param int $num How many random (non-prometheus) keys to prepopulate into APC
      */
-    private function initializeAPC(int $num): void
+    private function initializeAPC(int $num)
     {
         apcu_clear_cache();
 
@@ -36,7 +36,7 @@ class PerformanceTest extends TestCase
      * Compare the speed of creating new metrics between both engines.
      * Creating new items in APCng gets slower like O(n) as NUM_PROM_ITEMS increases; is unaffected by NUM_APC_ITEMS
      */
-    public function testCreates(): void
+    public function testCreates()
     {
         $results = [];
         foreach ($this::NUM_APC_KEYS as $num_apc_keys) {
@@ -69,7 +69,7 @@ class PerformanceTest extends TestCase
      * Compare the speed of incrementing existing metrics beteween both engines.
      * Incrementing items should be O(1) regardless of NUM_APC_ITEMS or NUM_PROM_ITEMS
      */
-    public function testIncrements(): void
+    public function testIncrements()
     {
         $results = [];
         foreach ($this::NUM_APC_KEYS as $num_apc_keys) {
@@ -104,7 +104,7 @@ class PerformanceTest extends TestCase
      * Compare the speed of calling wipeStorage() between both engines.
      * Clearing cache should be unaffected by the number of objects stored in APC
      */
-    public function testWipeStorage(): void
+    public function testWipeStorage()
     {
         $results = [];
         foreach ($this::NUM_APC_KEYS as $num_apc_keys) {
@@ -145,7 +145,7 @@ class PerformanceTest extends TestCase
      * Compare the speed of collecting the metrics into a report between both engines.
      * Enumerating all values in cache should be unaffected by the number of objects stored in APC
      */
-    public function testCollect(): void
+    public function testCollect()
     {
         $results = [];
         foreach ($this::NUM_APC_KEYS as $num_apc_keys) {

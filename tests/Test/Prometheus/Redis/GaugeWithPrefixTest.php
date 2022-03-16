@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractGaugeTest;
  */
 class GaugeWithPrefixTest extends AbstractGaugeTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $connection = new \Redis();
         $connection->connect(REDIS_HOST);

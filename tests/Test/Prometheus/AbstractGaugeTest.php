@@ -21,17 +21,17 @@ abstract class AbstractGaugeTest extends TestCase
      */
     public $adapter;
 
-    public function setUp(): void
+    public function setUp()
     {
         $this->configureAdapter();
     }
 
-    abstract public function configureAdapter(): void;
+    abstract public function configureAdapter();
 
     /**
      * @test
      */
-    public function itShouldAllowSetWithLabels(): void
+    public function itShouldAllowSetWithLabels()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->set(123, ['lalal', 'lululu']);
@@ -65,7 +65,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldAllowSetWithoutLabelWhenNoLabelsAreDefined(): void
+    public function itShouldAllowSetWithoutLabelWhenNoLabelsAreDefined()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing');
         $gauge->set(123);
@@ -99,7 +99,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldAllowSetWithAFloatValue(): void
+    public function itShouldAllowSetWithAFloatValue()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing');
         $gauge->set(123.5);
@@ -133,7 +133,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIncrementAValue(): void
+    public function itShouldIncrementAValue()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->inc(['lalal', 'lululu']);
@@ -166,7 +166,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldIncrementWithFloatValue(): void
+    public function itShouldIncrementWithFloatValue()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->inc(['lalal', 'lululu']);
@@ -199,7 +199,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldDecrementAValue(): void
+    public function itShouldDecrementAValue()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->dec(['lalal', 'lululu']);
@@ -232,7 +232,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldDecrementWithFloatValue(): void
+    public function itShouldDecrementWithFloatValue()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->dec(['lalal', 'lululu']);
@@ -265,7 +265,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldOverwriteWhenSettingTwice(): void
+    public function itShouldOverwriteWhenSettingTwice()
     {
         $gauge = new Gauge($this->adapter, 'test', 'some_metric', 'this is for testing', ['foo', 'bar']);
         $gauge->set(123, ['lalal', 'lululu']);
@@ -298,7 +298,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidMetricsNames(): void
+    public function itShouldRejectInvalidMetricsNames()
     {
         $this->expectException(InvalidArgumentException::class);
         new Gauge($this->adapter, 'test', 'some metric invalid metric', 'help');
@@ -307,7 +307,7 @@ abstract class AbstractGaugeTest extends TestCase
     /**
      * @test
      */
-    public function itShouldRejectInvalidLabelNames(): void
+    public function itShouldRejectInvalidLabelNames()
     {
         $this->expectException(InvalidArgumentException::class);
         new Gauge($this->adapter, 'test', 'some_metric', 'help', ['invalid label']);
@@ -319,7 +319,7 @@ abstract class AbstractGaugeTest extends TestCase
      *
      * @param mixed $value The label value
      */
-    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value): void
+    public function isShouldAcceptAnySequenceOfBasicLatinCharactersForLabelValues($value)
     {
         $label = 'foo';
         $histogram = new Gauge($this->adapter, 'test', 'some_metric', 'help', [$label]);

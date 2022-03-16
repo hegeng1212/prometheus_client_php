@@ -20,7 +20,7 @@ class BlackBoxTest extends TestCase
      */
     private $adapter;
 
-    public function setUp(): void
+    public function setUp()
     {
         $adapter = getenv('ADAPTER');
         if (is_string($adapter) === false) {
@@ -35,7 +35,7 @@ class BlackBoxTest extends TestCase
     /**
      * @test
      */
-    public function gaugesShouldBeOverwritten(): void
+    public function gaugesShouldBeOverwritten()
     {
         $start = microtime(true);
         $promises = [
@@ -67,7 +67,7 @@ class BlackBoxTest extends TestCase
      * @dataProvider countersDataProvider
      * @param int|float $increment
      */
-    public function countersShouldIncrementAtomically($increment): void
+    public function countersShouldIncrementAtomically($increment)
     {
         $start = microtime(true);
         $promises = [];
@@ -108,7 +108,7 @@ class BlackBoxTest extends TestCase
     /**
      * @test
      */
-    public function histogramsShouldIncrementAtomically(): void
+    public function histogramsShouldIncrementAtomically()
     {
         $start = microtime(true);
         $promises = [
@@ -152,7 +152,7 @@ EOF
     /**
      * @test
      */
-    public function summariesShouldIncrementAtomically(): void
+    public function summariesShouldIncrementAtomically()
     {
         $start = microtime(true);
         $promises = [

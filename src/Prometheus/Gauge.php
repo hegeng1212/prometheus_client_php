@@ -14,7 +14,7 @@ class Gauge extends Collector
      * @param double $value e.g. 123
      * @param string[] $labels e.g. ['status', 'opcode']
      */
-    public function set(float $value, array $labels = []): void
+    public function set(float $value, array $labels = [])
     {
         $this->assertLabelsAreDefinedCorrectly($labels);
 
@@ -42,7 +42,7 @@ class Gauge extends Collector
     /**
      * @param string[] $labels
      */
-    public function inc(array $labels = []): void
+    public function inc(array $labels = [])
     {
         $this->incBy(1, $labels);
     }
@@ -51,7 +51,7 @@ class Gauge extends Collector
      * @param int|float $value
      * @param string[] $labels
      */
-    public function incBy($value, array $labels = []): void
+    public function incBy($value, array $labels = [])
     {
         $this->assertLabelsAreDefinedCorrectly($labels);
 
@@ -71,7 +71,7 @@ class Gauge extends Collector
     /**
      * @param string[] $labels
      */
-    public function dec(array $labels = []): void
+    public function dec(array $labels = [])
     {
         $this->decBy(1, $labels);
     }
@@ -80,7 +80,7 @@ class Gauge extends Collector
      * @param int|float $value
      * @param string[] $labels
      */
-    public function decBy($value, array $labels = []): void
+    public function decBy($value, array $labels = [])
     {
         $this->incBy(-$value, $labels);
     }

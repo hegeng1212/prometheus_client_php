@@ -30,7 +30,7 @@ class TestEngineSpeed
    /**
     * Create new (or increment existing) metrics
     */
-    public function doCreates(): void
+    public function doCreates()
     {
         $registry = new CollectorRegistry($this->driver);
         for ($i = 0; $i < $this->num_metrics; $i++) {
@@ -44,7 +44,7 @@ class TestEngineSpeed
    /**
     * Remove all metrics
     */
-    public function doWipeStorage(): void
+    public function doWipeStorage()
     {
         $this->driver->wipeStorage();
     }
@@ -52,7 +52,7 @@ class TestEngineSpeed
    /**
     * Collect a report of all recorded metrics
     */
-    public function doCollect(): void
+    public function doCollect()
     {
         $registry = new CollectorRegistry($this->driver);
         $renderer = new RenderTextFormat();

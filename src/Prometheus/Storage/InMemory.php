@@ -46,7 +46,7 @@ class InMemory implements Adapter
     /**
      * @deprecated use replacement method wipeStorage from Adapter interface
      */
-    public function flushMemory(): void
+    public function flushMemory()
     {
         $this->wipeStorage();
     }
@@ -54,7 +54,7 @@ class InMemory implements Adapter
     /**
      * @inheritDoc
      */
-    public function wipeStorage(): void
+    public function wipeStorage()
     {
         $this->counters = [];
         $this->gauges = [];
@@ -248,7 +248,7 @@ class InMemory implements Adapter
      * @param mixed[] $data
      * @return void
      */
-    public function updateHistogram(array $data): void
+    public function updateHistogram(array $data)
     {
         // Initialize the sum
         $metaKey = $this->metaKey($data);
@@ -285,7 +285,7 @@ class InMemory implements Adapter
      * @param mixed[] $data
      * @return void
      */
-    public function updateSummary(array $data): void
+    public function updateSummary(array $data)
     {
         $metaKey = $this->metaKey($data);
         if (array_key_exists($metaKey, $this->summaries) === false) {
@@ -309,7 +309,7 @@ class InMemory implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateGauge(array $data): void
+    public function updateGauge(array $data)
     {
         $metaKey = $this->metaKey($data);
         $valueKey = $this->valueKey($data);
@@ -332,7 +332,7 @@ class InMemory implements Adapter
     /**
      * @param mixed[] $data
      */
-    public function updateCounter(array $data): void
+    public function updateCounter(array $data)
     {
         $metaKey = $this->metaKey($data);
         $valueKey = $this->valueKey($data);
@@ -412,7 +412,7 @@ class InMemory implements Adapter
     /**
      * @param mixed[] $samples
      */
-    protected function sortSamples(array &$samples): void
+    protected function sortSamples(array &$samples)
     {
         usort($samples, function ($a, $b): int {
             return strcmp(implode("", $a['labelValues']), implode("", $b['labelValues']));

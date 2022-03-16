@@ -65,7 +65,7 @@ class APCng implements Adapter
      * @param mixed[] $data
      * @throws RuntimeException
      */
-    public function updateHistogram(array $data): void
+    public function updateHistogram(array $data)
     {
         // Initialize or atomically increment the sum
         // Taken from https://github.com/prometheus/client_golang/blob/66058aac3a83021948e5fb12f1f408ff556b9037/prometheus/value.go#L91
@@ -114,7 +114,7 @@ class APCng implements Adapter
      * @param mixed[] $data
      * @throws RuntimeException
      */
-    public function updateSummary(array $data): void
+    public function updateSummary(array $data)
     {
         // store value key; store metadata & labels if new
         $valueKey = $this->valueKey($data);
@@ -151,7 +151,7 @@ class APCng implements Adapter
      * @param mixed[] $data
      * @throws RuntimeException
      */
-    public function updateGauge(array $data): void
+    public function updateGauge(array $data)
     {
         $valueKey = $this->valueKey($data);
         if ($data['command'] === Adapter::COMMAND_SET) {
@@ -182,7 +182,7 @@ class APCng implements Adapter
      * @param mixed[] $data
      * @throws RuntimeException
      */
-    public function updateCounter(array $data): void
+    public function updateCounter(array $data)
     {
         // Taken from https://github.com/prometheus/client_golang/blob/66058aac3a83021948e5fb12f1f408ff556b9037/prometheus/value.go#L91
         $valueKey = $this->valueKey($data);
@@ -219,7 +219,7 @@ class APCng implements Adapter
      * @param array<mixed> $data
      * @return void
      */
-    private function storeLabelKeys(array $data): void
+    private function storeLabelKeys(array $data)
     {
         // Store labelValues in each labelName key
         foreach ($data['labelNames'] as $seq => $label) {
@@ -239,7 +239,7 @@ class APCng implements Adapter
      * @return void
      * @throws RuntimeException
      */
-    private function addItemToKey(string $key, string $item): void
+    private function addItemToKey(string $key, string $item)
     {
         // Modify serialized array stored in $key
         $arr = apcu_fetch($key);
@@ -261,7 +261,7 @@ class APCng implements Adapter
      *
      * @return void
      */
-    public function wipeStorage(): void
+    public function wipeStorage()
     {
         //                   /      / | PCRE expresion boundary
         //                    ^       | match from first character only
@@ -280,7 +280,7 @@ class APCng implements Adapter
      * @param int $ttl
      * @return void
      */
-    public function setMetainfoTTL(int $ttl): void
+    public function setMetainfoTTL(int $ttl)
     {
         $this->metainfoCacheTTL = $ttl;
     }
@@ -739,7 +739,7 @@ class APCng implements Adapter
     /**
      * @param mixed[] $samples
      */
-    private function sortSamples(array &$samples): void
+    private function sortSamples(array &$samples)
     {
         usort($samples, function ($a, $b): int {
             return strcmp(implode("", $a['labelValues']), implode("", $b['labelValues']));

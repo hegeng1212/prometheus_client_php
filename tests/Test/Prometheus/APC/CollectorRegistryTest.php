@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractCollectorRegistryTest;
 class CollectorRegistryTest extends AbstractCollectorRegistryTest
 {
 
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $this->adapter = new APC();
         $this->adapter->wipeStorage();

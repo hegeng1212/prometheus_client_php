@@ -13,7 +13,7 @@ use Test\Prometheus\AbstractCounterTest;
  */
 class CounterWithPrefixTest extends AbstractCounterTest
 {
-    public function configureAdapter(): void
+    public function configureAdapter()
     {
         $connection = new \Redis();
         $connection->connect(REDIS_HOST);
